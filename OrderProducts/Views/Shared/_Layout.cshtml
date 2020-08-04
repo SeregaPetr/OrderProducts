@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="flex-grow-1">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
+            @Html.ActionLink("Гурман", "Index", "Home", null, new { @class = "navbar-brand font-italic text-primary h1" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto ">
+                    <li class="nav-item  @(@ViewBag.SelectedMenu == "menu" ? "active" : "")">
+                        @Html.ActionLink("МЕНЮ", "Index", "Home", null, null, "menu", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item @(@ViewBag.SelectedMenu == "delivery" ? "active" : "")">
+                        @Html.ActionLink("ДОСТАВКА И ОПЛАТА", "Index", "Delivery", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item @(@ViewBag.SelectedMenu == "contacts" ? "active" : "")">
+                        @Html.ActionLink("КОНТАКТЫ", "Index", "Contact", null, new { @class = "nav-link" })
+                    </li>
+                    @Html.Partial("_AdminPanel")
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+            <div id="basket">
+                <ul class="navbar-nav navbar-right">
+                    <li>
+                        @Html.Action("ShowQuantityItemsInCart", "Order")
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        @RenderBody()
+    </div>
+    <footer class="text-muted text-center text-small ">
+        <hr />
+        @*<div class="float-right pr-4">
+                <p>
+                    <a href="#" class="text-decoration-none">Вверх</a>
+                </p>
+            </div>*@
+        <p class="mb-1">&copy; @DateTime.Now.Year Company Name</p>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

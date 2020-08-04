@@ -1,0 +1,17 @@
+﻿
+@if (Request.IsAuthenticated && (ViewContext.HttpContext.User.IsInRole("employee") || ViewContext.HttpContext.User.IsInRole("admin")))
+{
+    @Html.Partial("_EmployeePanel")
+
+    if (ViewContext.HttpContext.User.IsInRole("admin"))
+    {
+        <li class="nav-item dropdown @(@ViewBag.SelectedMenu == "admin" ? "active" : "")">
+            <a class="nav-link dropdown-toggle" href="#" id="admin-panel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">АДМИНКА</a>
+            <div class="dropdown-menu" aria-labelledby="admin-panel">
+                @Html.ActionLink("Типы платежей", "Index", "AdminPaymentType", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("Блюда", "Index", "AdminDishe", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("Меню по категориям", "Index", "AdminMenuCategorie", null, new { @class = "dropdown-item" })
+            </div>
+        </li>
+    }
+}

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<OrderProducts.Models.Order>
+
+@{
+    int number = 1;
+}
+
+<div class="container mt-4" id="admin-order">
+    <h3 class="pl-3">@ViewBag.Title</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered text-center">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">
+                        @Html.ActionLink("Номер заказа", "SortOrder",
+                       new { status = ViewBag.Status, sort = "orderNumber", direction = ViewBag.Direction })
+                    </th>
+                    <th scope="col">
+                        @Html.ActionLink(Html.DisplayNameFor(model => model.OrderDate).ToHtmlString(), "SortOrder",
+                       new {status = ViewBag.Status, sort = "orderDate", direction = ViewBag.Direction })
+                    </th>
+                    <th scope="col">
+                        @Html.ActionLink(Html.DisplayNameFor(model => model.OrderDeliveryTime).ToHtmlString(), "SortOrder",
+                       new {status = ViewBag.Status, sort = "orderDeliveryTime", direction = ViewBag.Direction })
+                    </th>
+                    <th scope="col">
+                        @Html.ActionLink(Html.DisplayNameFor(model => model.OrderPrice).ToHtmlString(), "SortOrder",
+                       new {status = ViewBag.Status, sort = "orderPrice", direction = ViewBag.Direction })
+                    </th>
+                    <th scope="col">
+                        @Html.ActionLink(Html.DisplayNameFor(model => model.Comment).ToHtmlString(), "SortOrder",
+                       new {status = ViewBag.Status, sort = "comment", direction = ViewBag.Direction })
+                    </th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(number++)</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDeliveryTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderPrice) грн.
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment)
+                        </td>
+                        <th scope="col">
+                            @Html.ActionLink("Подробно", "Details", new { id = item.Id, status = item.StatusOrder })
+                        </th>
+                        <th>
+                            @using (Html.BeginForm("Delete", "AdminOrder", new { id = item.Id, status = item.StatusOrder }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="close " id="delete-dish" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            }
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

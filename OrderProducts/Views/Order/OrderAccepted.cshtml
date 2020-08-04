@@ -1,0 +1,107 @@
+﻿@model OrderProducts.Models.Order
+
+@{
+    ViewBag.Title = "Детали заказа";
+    int number = 1;
+}
+
+<div class="container mt-4">
+    <h3 class="pl-3">@ViewBag.Title</h3>
+    <div>
+        <h3 class="text-center mt-4">Заказ принят!!!</h3>
+        <p>Спасибо! Ваш заказ был принят. В течение 5 минут с Вами свяжется наш оператор для уточнения деталей.</p>
+    </div>
+    <hr />
+
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered text-center">
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.OrderLines.First().Dish.NameDish)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.OrderLines.First().Dish.Price)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.OrderLines.First().Quantity)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.OrderLines.First().OrderLinePrice)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderLines)
+                {
+                    <tr>
+                        <td>@(number++)</td>
+                        <td>
+                            @Html.DisplayFor(model => item.Dish.NameDish)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Dish.Price) грн.
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.OrderLinePrice) грн.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-right pr-2 font-weight-bold text-uppercase mb-5">
+        Сумма: @Model.OrderPrice грн.
+    </div>
+
+    <div class="table-responsive mt-5">
+        <table class="table table-striped table-dark table-bordered text-center">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        № заказа
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.OrderDate)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.OrderDeliveryTime)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.PaymentType.NamePaymentType)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.User.Phone)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.OrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.OrderDeliveryTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PaymentType.NamePaymentType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.User.Phone)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<OrderProducts.Models.MenuCategory>
+
+<div class="mt-5 pt-4 row row-cols-1 row-cols-md-3 ">
+    @foreach (var item in Model)
+    {
+        <div class="col mb-4">
+            <div class="card h-100 ">
+                <img class="card-img-top" src="/Content/Images/@item.Photo" alt="@item.Photo">
+                <div class="card-body ">
+                    <h4 class="card-title  font-weight-bolder text-center text-uppercase">@item.NameCategory</h4>
+                    <p class="card-text font-italic mb-0">@item.Comment</p>
+                     <a href="/Dish/Dish/@item.Id" class="stretched-link "></a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,15 @@
+﻿@model OrderProducts.Models.ViewModels.UserDelivery
+
+@{
+    ViewBag.Title = "Заказ";
+}
+
+<div class="container mt-4">
+    <h2 class="pl-3">@ViewBag.Title</h2>
+    <div id="order">
+        @Html.Action("OrderContents")
+    </div>
+    <div>
+        @Html.Partial("_DeliveryDetails", Model)
+    </div>
+</div>

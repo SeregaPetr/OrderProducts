@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Главная";
+    ViewBag.SelectedMenu = "menu";
+}
+<div class="container-fluid body-content mt-md-1 p-0">
+    @Html.Action("Carousel")
+</div>
+<div class="container">
+    <div id="menu" class="text-white mt-n5">
+        <p>0</p>
+    </div>
+    @Html.Action("MenuCategory")
+</div>
+

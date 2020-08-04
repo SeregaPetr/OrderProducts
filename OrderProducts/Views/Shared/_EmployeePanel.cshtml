@@ -1,0 +1,10 @@
+﻿
+<li class="nav-item dropdown @(@ViewBag.SelectedMenu == "orders" ? "active" : "")">
+    <a class="nav-link dropdown-toggle" href="#" id="employee-panel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ЗАКАЗЫ</a>
+    <div class="dropdown-menu" aria-labelledby="employee-panel">
+        @Html.ActionLink("Новые заказы", "Index", "AdminOrder", new { status = "new" }, new { @class = "dropdown-item" })
+        @Html.ActionLink("Обработанные заказы", "Index", "AdminOrder", new { status = "process" }, new { @class = "dropdown-item" })
+        @Html.ActionLink("Заказы на доставке", "Index", "AdminOrder", new { status = "delivery" }, new { @class = "dropdown-item" })
+        @Html.ActionLink("Закрытые", "Index", "AdminOrder", new { status = "closed" }, new { @class = "dropdown-item" })
+    </div>
+</li>

@@ -1,0 +1,7 @@
+﻿@model int
+
+@using (Html.BeginForm("Order", "Order", FormMethod.Get, new { @class = "form-inline mt-2 mt-md-0" }))
+{
+    <button type="submit" class="btn btn-primary">Корзина <span class="badge badge-light">@Model</span></button>
+}
+

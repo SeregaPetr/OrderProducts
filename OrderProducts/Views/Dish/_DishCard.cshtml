@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OrderProducts.Models.Dish>
+
+<div>
+    <div>
+        <ul class="nav justify-content-end ">
+            <li class="nav-item ">
+                @Html.Label("Сортировать по:", new { @class = "nav-link font-weight-bolder" })
+            </li>
+            <li class="nav-item ">
+                @Ajax.ActionLink("пулярности", "DishCard", new { Id = @ViewBag.Id },
+                    new AjaxOptions { UpdateTargetId = "сard-dish", HttpMethod = "Post" },
+                    new { @class = $"nav-link sort-link {(@ViewBag.Sort == "popular" ? "disabled" : "")}" })
+            </li>
+            <li class="nav-item ">
+                @Ajax.ActionLink("цене возрастания", "DishCard", new { Id = @ViewBag.Id, sort = "price_asc" },
+                    new AjaxOptions { UpdateTargetId = "сard-dish", HttpMethod = "Post" },
+                    new { @class = $"nav-link sort-link {(@ViewBag.Sort == "price_asc" ? "disabled" : "")}" })
+            </li>
+            <li class="nav-item ">
+                @Ajax.ActionLink("цене убывания", "DishCard", new { Id = @ViewBag.Id, sort = "price_desc" },
+                    new AjaxOptions { UpdateTargetId = "сard-dish", HttpMethod = "Post" },
+                    new { @class = $"nav-link sort-link {(@ViewBag.Sort == "price_desc" ? "disabled" : "")}" })
+            </li>
+        </ul>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 ">
+        @foreach (var item in Model)
+        {
+            <div class="col mb-4 ">
+                <div class="card h-100 shadow-lg">
+                    <img class=" card-img-top shadow-lg" src="/Content/Images/@item.Photo" alt="@item.Photo">
+                    <div class="card-body py-3">
+                        <h4 class="card-title  font-weight-bolder text-center text-uppercase">@item.NameDish</h4>
+                        <p class="card-text font-italic mb-0">@item.CompositionDish</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="row">
+                            <div class="col-5">Вес: @item.Weight гр.</div>
+                            <div class="col-7 ml-auto text-right text-danger font-weight-bolder">Цена: @item.Price грн.</div>
+                        </div>
+                    </div>
+                    <div>
+                        @using (Ajax.BeginForm("AddDishToCart", "Order", new { Id = @item.Id }, new AjaxOptions { UpdateTargetId = "basket" }))
+                        {
+                            <input type="submit" value="Добавить в корзину" class="container btn btn-block m-auto btn-success" />
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

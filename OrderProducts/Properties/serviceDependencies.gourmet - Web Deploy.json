@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroup2')]/providers/Microsoft.Sql/servers/orderproductsdbserver/databases/OrderProducts_db",
+      "type": "mssql.azure",
+      "connectionId": "OrderProductContext",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

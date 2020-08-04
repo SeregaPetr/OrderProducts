@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OrderProducts.Models.Dish>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.MenuCategory.NameCategory).ToHtmlString(), "Sort",
+           new { sort = "category", direction = @ViewBag.Direction })
+        </th>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.NameDish).ToHtmlString(), "Sort",
+          new { sort = "nameDish", direction = @ViewBag.Direction })
+        </th>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.CompositionDish).ToHtmlString(), "Sort",
+         new { sort = "composition", direction = @ViewBag.Direction })
+        </th>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Weight).ToHtmlString(), "Sort",
+         new { sort = "weight", direction = @ViewBag.Direction })
+        </th>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Photo).ToHtmlString(), "Sort",
+         new { sort = "photo", direction = @ViewBag.Direction })
+        </th>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Price).ToHtmlString(), "Sort",
+         new { sort = "price", direction = @ViewBag.Direction })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuCategory.NameCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameDish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompositionDish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

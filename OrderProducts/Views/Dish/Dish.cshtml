@@ -1,0 +1,14 @@
+﻿@model OrderProducts.Models.ViewModels.DishCategory
+
+    @{
+        ViewBag.Title = @Model.Dishes.First().MenuCategory.NameCategory;
+    }
+
+    <div class="container">
+        <h2 class="font-weight-bolder text-uppercase mt-5 mb-n2 pl-4">@ViewBag.Title</h2>
+
+        <div id="сard-dish">
+            @Html.Partial("_DishCard", @Model.Dishes)
+        </div>
+    </div>
+
